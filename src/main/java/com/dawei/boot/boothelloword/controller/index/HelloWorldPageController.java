@@ -1,8 +1,10 @@
-package com.dawei.boot.boothelloword.controller;
+package com.dawei.boot.boothelloword.controller.index;
 
+import com.dawei.boot.boothelloword.pojo.DemoPojo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -20,9 +22,12 @@ public class HelloWorldPageController {
      * 视图返回
      */
     @RequestMapping(value = "/index")
-    public String toIndexPage() {
+    public String toIndexPage(Model model) {
         logger.info("To index page .... ");
-        return "freemarker/index";
+        DemoPojo demoPojo = new DemoPojo();
+        demoPojo.setUserName("ANC");
+        model.addAttribute(demoPojo);
+        return "/freemarker/index";
     }
 
 

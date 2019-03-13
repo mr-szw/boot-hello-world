@@ -1,4 +1,4 @@
-package com.dawei.boot.boothelloword.controller;
+package com.dawei.boot.boothelloword.controller.index;
 
 import com.dawei.boot.boothelloword.annotation.OperationCutPoint;
 import org.slf4j.Logger;
