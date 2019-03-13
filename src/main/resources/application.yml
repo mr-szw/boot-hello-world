@@ -1,0 +1,15 @@
+#公用配置
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+
+#Spring 配置
+spring:
+  #视图配置
+  freemarker:
+    template-loader-path: classpath:/templates
+    cache: false
+    suffix: .ftl
+

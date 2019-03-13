@@ -7,14 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author by Dawei on 2019/3/12.
+ * 用于页面返回的
  */
 @Controller
 @RequestMapping("/page")
 public class HelloWorldPageController {
 
-    public static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
 
+    /**
+     * 视图返回
+     */
+    @RequestMapping(value = "/index")
+    public String toIndexPage() {
+        logger.info("To index page .... ");
+        return "freemarker/index";
+    }
 
 
 
