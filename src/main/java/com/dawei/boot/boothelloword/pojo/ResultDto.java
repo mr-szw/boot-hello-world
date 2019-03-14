@@ -4,11 +4,13 @@ package com.dawei.boot.boothelloword.pojo;
 import com.alibaba.fastjson.JSON;
 import com.dawei.boot.boothelloword.enums.ErrorEnum;
 
+import java.io.Serializable;
+
 /**
  * @author by Dawei on 2018/8/22.
  * 新的返回实体Dto
  */
-public class ResultDto<T> {
+public class ResultDto<T> implements Serializable {
 
     private Integer code;
 
@@ -76,8 +78,8 @@ public class ResultDto<T> {
         this.setCode(ErrorEnum.ERROR_PARAM.getCode());
     }
 
-    public String getResult() {
-        return JSON.toJSONString(this);
+    public static String getResult(ResultDto resultDto) {
+        return JSON.toJSONString(resultDto);
     }
 
 }

@@ -7,6 +7,19 @@ server:
 
 #Spring 配置
 spring:
+  #配置文件上传
+  servlet:
+    multipart:
+      #默认 为true允许附件上传
+      enabled: true
+      #临时文件存储位置
+      #location: opt/tmp/file
+      #设定一定大小文件就先写到临时文件中 0为不设定阈值
+      file-size-threshold: 0
+      #单个文件最大长度
+      max-file-size: 5MB
+      #单次Request 請求允许的最大文件长度
+      max-request-size:  10MB
   #视图配置
   freemarker:
     template-loader-path: classpath:/templates
@@ -18,3 +31,4 @@ spring:
     restart:
       enabled: true
       additional-paths: src/main/java
+

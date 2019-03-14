@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author by Dawei on 2019/3/12.
+ *
+ * 切面操作
  */
 @Configuration
 @Aspect
@@ -20,6 +22,8 @@ public class AopConfigHandler {
 
     /**
      * 对指定注解做切点
+     * 对应注解:
+     *      @see com.dawei.boot.boothelloword.annotation.OperationCutPoint
      * @param proceedingJoinPoint 进程切点
      * @return 返回操作结果
      * @throws Throwable 异常不做处理直接抛出

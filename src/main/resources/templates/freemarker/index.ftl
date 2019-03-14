@@ -7,5 +7,7 @@
 <body>
 <a href="localhost:8080/hello/world?name=2132">Click it</a>
 <h2>Username  ::  ${demoPojo.userName}</h2>
+
+<a href="upload.ftl">UpLoad</a>
 </body>
 </html>
