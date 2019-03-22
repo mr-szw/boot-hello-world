@@ -2,15 +2,13 @@ package com.dawei.boot.boothelloword.interceptors;
 
 import com.alibaba.fastjson.JSON;
 import com.dawei.boot.boothelloword.pojo.UserInfo;
-import com.dawei.boot.boothelloword.utils.RequestHelper;
-import org.apache.coyote.Request;
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Dawei 2019/3/14
@@ -40,5 +38,17 @@ public class UserLoginInterceptor implements HandlerInterceptor {
             logger.error("Can`t redirect to login page.");
         }
         return false;
+    }
+
+    //方法业务处理之后再调用
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+
+    }
+
+    //页面渲染完成之后 通常用于清除某些资源，类似Finally
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+
     }
 }

@@ -3,13 +3,11 @@ package com.dawei.boot.boothelloword.controller.userinfo;
 import com.alibaba.fastjson.JSON;
 import com.dawei.boot.boothelloword.pojo.DemoPojo;
 import com.dawei.boot.boothelloword.pojo.UserInfo;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
@@ -34,7 +32,8 @@ public class UserLoginController {
         demoPojo.setUserName("ABC");
         request.setAttribute("demoPojo", demoPojo);
 
-        return "/freemarker/index";
+        //重定向 redirect 客户端的二次请求 || 转发 : forward  服务器内部操作
+        return "redirect:/freemarker/index";
 
 
     }
