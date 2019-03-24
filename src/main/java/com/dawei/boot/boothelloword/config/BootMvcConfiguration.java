@@ -1,5 +1,6 @@
 package com.dawei.boot.boothelloword.config;
 
+import com.dawei.boot.boothelloword.interceptors.AllRunIntercepter;
 import com.dawei.boot.boothelloword.interceptors.UserLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -19,15 +20,17 @@ public class BootMvcConfiguration implements WebMvcConfigurer {
     //拦截器配置
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
         /*
          * 配置登陆校验拦截器
          * 拦截除了游客访问和登陆的所有請求
          */
         registry.addInterceptor(new UserLoginInterceptor())
                 .addPathPatterns("/**/**")
-                .excludePathPatterns("/user/login", "/**/guest/**");
+                //开后门： 登陆，游客，根目录（登陆)，验证码
+                .excludePathPatterns("/user/login", "/**/guest/**", "/", "/user/login/code");
 
+        //全局拦截 用于通用配置
+        registry.addInterceptor(new AllRunIntercepter()).addPathPatterns("/**/**");
     }
 
     //跨域访问配置

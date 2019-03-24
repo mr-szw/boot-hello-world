@@ -20,7 +20,8 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     /* 前置拦截 */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        logger.info("User login check ---- ");
+        String requestURI = request.getRequestURI();
+        logger.info("User login check ---- for requestURI={}", requestURI);
         Object userInfoObj = request.getSession().getAttribute("userInfo");
         if(userInfoObj != null) {
             UserInfo userInfo = JSON.parseObject(userInfoObj.toString(), UserInfo.class);
@@ -33,7 +34,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
             }
         }
         try {
-            response.sendRedirect("/freemarker/login.ftl");
+            response.sendRedirect("/");
         } catch (IOException e) {
             logger.error("Can`t redirect to login page.");
         }

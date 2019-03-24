@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -41,17 +42,15 @@ public class HelloWorldPageController {
     }
 
 
+
     /**
-     * 返回登陆视图
+     * 项目根路径 跳转
      */
-    @RequestMapping(value = {"/page/upload", "/"})
-    public String toUserLogin() {
-        logger.info("To user login  page .... ");
+    @GetMapping(value = "")
+    public String rootRequest() {
+        logger.info("To login page .... ");
         return "/freemarker/login";
     }
-
-
-
 
 
 
