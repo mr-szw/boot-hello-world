@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 public class AopConfigHandler {
 
-    public static final Logger logger = LoggerFactory.getLogger(AopConfigHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(AopConfigHandler.class);
 
 
     /**

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dawei.boot.boothelloword.mapper.SchedulerJobMapper" >
+  <resultMap id="BaseResultMap" type="com.dawei.boot.boothelloword.entity.SchedulerJob" >
+    <constructor >
+      <idArg column="job_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cluster_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="job_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="job_class_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="job_method_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="method_param_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="method_param_value" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cron_str" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="welfare_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    job_id, cluster_name, job_name, job_class_name, job_method_name, method_param_name, 
+    method_param_value, cron_str, status, welfare_email, description
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_scheduler_job
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_scheduler_job
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </delete>
+
+
+
+  <insert id="insertSelective" parameterType="com.dawei.boot.boothelloword.entity.SchedulerJob" >
+    insert into t_scheduler_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="clusterName != null" >
+        cluster_name,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="jobClassName != null" >
+        job_class_name,
+      </if>
+      <if test="jobMethodName != null" >
+        job_method_name,
+      </if>
+      <if test="methodParamName != null" >
+        method_param_name,
+      </if>
+      <if test="methodParamValue != null" >
+        method_param_value,
+      </if>
+      <if test="cronStr != null" >
+        cron_str,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="welfareEmail != null" >
+        welfare_email,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jobId != null" >
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="clusterName != null" >
+        #{clusterName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobClassName != null" >
+        #{jobClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobMethodName != null" >
+        #{jobMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodParamName != null" >
+        #{methodParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodParamValue != null" >
+        #{methodParamValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cronStr != null" >
+        #{cronStr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="welfareEmail != null" >
+        #{welfareEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.dawei.boot.boothelloword.entity.SchedulerJob" >
+    update t_scheduler_job
+    <set >
+      <if test="clusterName != null" >
+        cluster_name = #{clusterName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobClassName != null" >
+        job_class_name = #{jobClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobMethodName != null" >
+        job_method_name = #{jobMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodParamName != null" >
+        method_param_name = #{methodParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodParamValue != null" >
+        method_param_value = #{methodParamValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cronStr != null" >
+        cron_str = #{cronStr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="welfareEmail != null" >
+        welfare_email = #{welfareEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

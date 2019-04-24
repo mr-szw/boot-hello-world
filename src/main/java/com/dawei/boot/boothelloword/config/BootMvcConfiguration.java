@@ -27,7 +27,8 @@ public class BootMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(new UserLoginInterceptor())
                 .addPathPatterns("/**/**")
                 //开后门： 登陆，游客，根目录（登陆)，验证码
-                .excludePathPatterns("/user/login", "/**/guest/**", "/", "/user/login/code");
+                .excludePathPatterns("/user/login", "/**/guest/**", "/", "/user/login/code")
+                .excludePathPatterns("/home/page/info");
 
         //全局拦截 用于通用配置
         registry.addInterceptor(new AllRunIntercepter()).addPathPatterns("/**/**");

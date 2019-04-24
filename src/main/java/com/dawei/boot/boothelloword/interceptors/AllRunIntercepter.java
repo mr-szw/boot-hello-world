@@ -1,15 +1,11 @@
 package com.dawei.boot.boothelloword.interceptors;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.pojo.UserInfo;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * @author Dawei 2019/3/24
