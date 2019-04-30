@@ -1,16 +1,12 @@
 package com.dawei.boot.boothelloword.services.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.entity.SchedulerJob;
 import com.dawei.boot.boothelloword.mapper.SchedulerJobMapper;
 import com.dawei.boot.boothelloword.pojo.UserInfo;
 import com.dawei.boot.boothelloword.services.IUserInfoService;
-import com.dawei.boot.boothelloword.utils.UniqueIDUtil;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
 import javax.annotation.Resource;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.core.RedisKeyValueTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +20,15 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Resource
     private SchedulerJobMapper schedulerJobMapper;
 
+    //Redis String K-V template
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
+    //@Resource
+    private ReactiveRedisTemplate<String, Object> reactiveRedisTemplate;
+
+
+    private RedisKeyValueTemplate redisKeyValueTemplate;
     /**
      * 通过登陆信息获取用户信息
      *
@@ -33,29 +38,31 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public UserInfo getUserInfoById(String loginName) {
-        List<String> jobIdList = new ArrayList<>();
-        for (int i = 1; i < 50; i++) {
-            SchedulerJob schedulerJob = new SchedulerJob();
-            String uniqueID = UniqueIDUtil.getUniqueID().toString();
-            jobIdList.add(uniqueID);
-            schedulerJob.setJobId(uniqueID);
-            schedulerJob.setClusterName(UUID.randomUUID().toString());
-            schedulerJob.setCronStr("1 * * * 8 *  ?");
-            schedulerJob.setDescription("wu");
-            schedulerJob.setJobClassName(UUID.randomUUID().toString());
-            schedulerJob.setJobName(UUID.randomUUID().toString());
-            schedulerJob.setStatus(1);
-            schedulerJob.setWelfareEmail("15554485117@163.com");
-            schedulerJob.setMethodParamName("A");
-            schedulerJobMapper.insertSelective(schedulerJob);
-        }
 
-        Iterator<String> iterator =
-            jobIdList.iterator();
-        while (iterator.hasNext()) {
-            SchedulerJob schedulerJob = schedulerJobMapper.selectByPrimaryKey(iterator.next());
-            System.out.println(JSON.toJSONString(schedulerJob));
-        }
+        String redisKey = "Boot:Test:Template:key:1";
+        stringRedisTemplate.opsForValue().set(redisKey, "Key1");
+        stringRedisTemplate.delete(redisKey);
+        stringRedisTemplate.opsForList().leftPush(redisKey, "Value", "Key1");
+        stringRedisTemplate.delete(redisKey);
+        stringRedisTemplate.opsForSet().add(redisKey, "Key1");
+        stringRedisTemplate.delete(redisKey);
+        stringRedisTemplate.opsForZSet().add(redisKey, "Key1",  10.0);
+        stringRedisTemplate.delete(redisKey);
+        stringRedisTemplate.opsForHash().put(redisKey, "Key1",  "Key2");
+        stringRedisTemplate.delete(redisKey);
+
+
+        //发布订阅
+        stringRedisTemplate.convertAndSend("ListenerTopicA", "MessageBody");
+        stringRedisTemplate.convertAndSend("ListenerTopicB", "MessageBody");
+        stringRedisTemplate.convertAndSend("ListenerTopicC", "MessageBody");
+
+        //reactiveRedisTemplate.convertAndSend(redisKey, "MessageBody");
+
+
+        String value = stringRedisTemplate.opsForValue().get(redisKey);
+
+
         return null;
     }
 

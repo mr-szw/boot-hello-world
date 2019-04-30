@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
+//Mybatis 扫包
 @MapperScan(basePackages = "com.dawei.boot.boothelloword.mapper")
 public class BootHelloWorldApplication {
 
