@@ -52,13 +52,17 @@ spring:
         #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
         max-wait: 3000s
 
-
+  ##Elastic的服务器节点'
+  data:
+    elasticsearch:
+      cluster-nodes: 39.105.201.88:9300
 
   #热部署 重启 #热部署扫包位置
   devtools:
     restart:
       enabled: true
       additional-paths: src/main/java
+
 
 mybatis:
   mapper-locations: classpath:mapper/**.xml
