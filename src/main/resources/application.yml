@@ -128,3 +128,6 @@ spring:
       maxOpenPreparedStatements: 100
 
 
+####项目服务配置
+zookeeper.address.url=zktest1.service.djdns.cn:2181,zktest2.service.djdns.cn:2181,zktest3.service.djdns.cn:2181
+
