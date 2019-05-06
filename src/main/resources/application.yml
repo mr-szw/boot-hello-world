@@ -57,6 +57,12 @@ spring:
     elasticsearch:
       cluster-nodes: 39.105.201.88:9300
 
+  ##Session 存储位置设置
+  session:
+    store-type: redis
+    redis:
+      ## 保存会话立即保存到redis
+      flush-mode: immediate
   #热部署 重启 #热部署扫包位置
   devtools:
     restart:

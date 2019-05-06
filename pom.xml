@@ -55,21 +55,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
-
-        <!-- json -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.56</version>
-        </dependency>
-
-        <!-- Google jar -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
         <!-- jdbc 包含事务的内容    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,6 +71,27 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
+
+        <!-- Boot-Session -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <!-- json -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
+        </dependency>
+
+        <!-- Google jar -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
 
 
         <!-- mybatis-spring-boot-starter -->
