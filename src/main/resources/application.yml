@@ -38,8 +38,8 @@ spring:
   #Redis 配置
   redis:
     sentinel:
-      master: my26601master
-      nodes: jzupsentinel01.redist.djdns.cn:26601,jzupsentinel01.redist.djdns.cn:26602,jzupsentinel01.redist.djdns.cn:26603
+      master:
+      nodes:
     database: 7
     jedis:
       pool:
@@ -94,8 +94,8 @@ spring:
   #Redis 配置
   redis:
     sentinel:
-      master: my26601master
-      nodes: jzupsentinel01.redist.djdns.cn:26601,jzupsentinel01.redist.djdns.cn:26602,jzupsentinel01.redist.djdns.cn:26603
+      master:
+      nodes:
     database: 7
     jedis:
       pool:
@@ -129,5 +129,5 @@ spring:
 
 
 ####项目服务配置
-zookeeper.address.url=zktest1.service.djdns.cn:2181,zktest2.service.djdns.cn:2181,zktest3.service.djdns.cn:2181
+zookeeper.address.url=
 
