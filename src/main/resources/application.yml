@@ -31,9 +31,9 @@ spring:
   #数据库配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.105.201.88:3306/testDataBase?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true
-    password: 93d837851db73e6650acfc9a1d63b64d
-    username: dawei21
+    url:
+    password:
+    username:
 
   #Redis 配置
   redis:
@@ -112,9 +112,9 @@ spring:
   ##数据源配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.105.201.88:3306/testDataBase?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true
-    password: 93d837851db73e6650acfc9a1d63b64d
-    username: dawei21
+    url:
+    password:
+    username:
     dbcp2:
       validationQuery: SELECT 1
       initialSize: 10
