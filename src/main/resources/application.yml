@@ -55,7 +55,7 @@ spring:
   ##Elastic的服务器节点'
   data:
     elasticsearch:
-      cluster-nodes: 39.105.201.88:9300
+      cluster-nodes:
 
   ##Session 存储位置设置
   session:
