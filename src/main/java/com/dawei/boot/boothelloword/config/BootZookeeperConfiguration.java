@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class BootZookeeperConfiguration {
 
 
+    //Zookeeper 注册中心的配置
     @Value(value = "${zookeeper.address.url}")
     private String zookeeperAddressUrl;
 
