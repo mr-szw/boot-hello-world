@@ -37,6 +37,7 @@ public class AopConfigHandler {
             logger.info("doRecordLog >>>>>>>>> result={}", proceed);
             return  proceed;
         } catch (Throwable throwable) {
+            throwable.printStackTrace();
             throw throwable;
         }
 

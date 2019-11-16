@@ -117,15 +117,16 @@ spring:
     username:
     dbcp2:
       validationQuery: SELECT 1
-      initialSize: 10
-      minIdle: 10
-      minEvictableIdleTimeMillis: 180000
-      testOnBorrow: false
-      testWhileIdle: true
+      initialSize: 15      #初始化连接 链接池初始链接大小，默认0
+      minIdle: 5         #最小空闲链接，链接池中允许的空闲链接数 默认0
+      minEvictableIdleTimeMillis: 180000 #链接回收空闲时间
+      testOnBorrow: false  #取链接的时候校验链接是否可用
+      testWhileIdle: true  #链接是否被空闲连接回收器进行校验
       removeAbandonedTimeout: 1800
-      logAbandoned: true
-      poolPreparedStatements: true
-      maxOpenPreparedStatements: 100
+      logAbandoned: true # 当statement或链接泄露时打印是stack traces日志
+      poolPreparedStatements: true  #开启对statement的缓存
+      maxOpenPreparedStatements: 100 #同时分配打开的statement的最大数量
+      max-idle: 10 #最大空闲数
 
 
 ####项目服务配置
