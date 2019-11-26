@@ -44,11 +44,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- AOP 功能点 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
 
         <!-- FreeMark 视图模板 -->
         <dependency>
@@ -78,12 +73,13 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
-        <!-- json -->
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.56</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
         </dependency>
+
 
         <!-- Google jar -->
         <dependency>
