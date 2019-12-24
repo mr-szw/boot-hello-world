@@ -1,14 +1,17 @@
 package com.dawei.boot.boothelloword.interceptors;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.pojo.UserInfo;
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.dawei.boot.boothelloword.pojo.UserInfo;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
 
 /**
  * @author Dawei 2019/3/14
@@ -24,7 +27,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
         logger.info("User login check ---- for requestURI={}", requestURI);
         Object userInfoObj = request.getSession().getAttribute("userInfo");
         if(userInfoObj != null) {
-            UserInfo userInfo = JSON.parseObject(userInfoObj.toString(), UserInfo.class);
+            UserInfo userInfo = GsonUtil.fromJson(userInfoObj.toString(), UserInfo.class);
             if(userInfo != null) {
                 /*Long userId = RequestHelper.getHeaderLongParm(request, "userId", null);
                 if(userId != null && userId.equals(userInfo.getId())) {

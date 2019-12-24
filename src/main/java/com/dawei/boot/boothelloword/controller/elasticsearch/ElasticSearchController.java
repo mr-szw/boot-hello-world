@@ -1,12 +1,10 @@
 package com.dawei.boot.boothelloword.controller.elasticsearch;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.dao.ElasticBookDao;
-import com.dawei.boot.boothelloword.entity.ElasticEntity;
-import com.dawei.boot.boothelloword.pojo.ResultDto;
 import java.util.List;
 import java.util.Optional;
+
 import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -15,6 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dawei.boot.boothelloword.dao.ElasticBookDao;
+import com.dawei.boot.boothelloword.entity.ElasticEntity;
+import com.dawei.boot.boothelloword.pojo.ResultDto;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
 
 /**
  * @author by Dawei on 2019/5/5.
@@ -42,7 +45,7 @@ public class ElasticSearchController {
             }
             ElasticEntity saveReuslt = elasticBookDao.save(elasticEntity);
             resultDto.setData(saveReuslt);
-            logger.info("Operation result ={}", JSON.toJSONString(saveReuslt));
+            logger.info("Operation result ={}", GsonUtil.toJson(saveReuslt));
         }
         return resultDto;
     }
@@ -58,7 +61,7 @@ public class ElasticSearchController {
         } else {
             resultDto.setSuccess();
             Optional<ElasticEntity> optionalElasticEntity = elasticBookDao.findById(id);
-            logger.info("Search Result={}", JSON.toJSONString(optionalElasticEntity));
+            logger.info("Search Result={}", GsonUtil.toJson(optionalElasticEntity));
             ElasticEntity elasticEntity = optionalElasticEntity.get();
             resultDto.setData(elasticEntity);
         }
@@ -74,7 +77,7 @@ public class ElasticSearchController {
         } else {
             resultDto.setSuccess();
             List<ElasticEntity> elasticEntityList = elasticBookDao.getByMessage(message);
-            logger.info("Search Result={}", JSON.toJSONString(elasticEntityList));
+            logger.info("Search Result={}", GsonUtil.toJson(elasticEntityList));
             resultDto.setData(elasticEntityList);
         }
         return resultDto;

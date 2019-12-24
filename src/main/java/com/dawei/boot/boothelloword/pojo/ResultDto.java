@@ -1,10 +1,9 @@
 package com.dawei.boot.boothelloword.pojo;
 
-
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.enums.ErrorEnum;
-
 import java.io.Serializable;
+
+import com.dawei.boot.boothelloword.enums.ErrorEnum;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
 
 /**
  * @author by Dawei on 2018/8/22.
@@ -79,7 +78,7 @@ public class ResultDto<T> implements Serializable {
     }
 
     public static String getResult(ResultDto resultDto) {
-        return JSON.toJSONString(resultDto);
+        return GsonUtil.toJson(resultDto);
     }
 
 }

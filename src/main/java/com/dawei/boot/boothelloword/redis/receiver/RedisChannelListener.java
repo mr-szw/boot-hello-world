@@ -1,12 +1,14 @@
 package com.dawei.boot.boothelloword.redis.receiver;
 
-import com.alibaba.fastjson.JSON;
 import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
+
+import com.dawei.boot.boothelloword.utils.GsonUtil;
 
 /**
  * @author by Dawei on 2019/4/30.
@@ -24,7 +26,7 @@ public class RedisChannelListener implements MessageListener {
     @Override
     public void onMessage(Message message, byte[] pattern) {
         String patternType = new String(pattern, StandardCharsets.UTF_8);
-        logger.info("get message info message is ={} patternType={}", JSON.toJSONString(message), patternType);
+        logger.info("get message info message is ={} patternType={}", GsonUtil.toJson(message), patternType);
 
         byte[] channel = message.getChannel();
 

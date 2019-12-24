@@ -1,8 +1,7 @@
 package com.dawei.boot.boothelloword.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.pojo.ResultDto;
 import javax.annotation.Resource;
+
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.CuratorEvent;
 import org.apache.curator.framework.api.CuratorEventType;
@@ -15,6 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dawei.boot.boothelloword.pojo.ResultDto;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
 
 /**
  * @author by Dawei on 2019/5/6. Zookeeper Api 尝试
@@ -46,7 +48,7 @@ public class ZookeeperAPIController {
         try {
             String nodeDate = "Zookeeper Test Data";
             Stat stat = curatorFramework.setData().forPath("/abc", nodeDate.getBytes());
-            logger.info("Set path={} data result={}", JSON.toJSONString(stat));
+            logger.info("Set path={} data result={}", "/abc",  GsonUtil.toJson(stat));
         } catch (Exception e) {
             logger.error("Get node data failed, e=", e);
         }

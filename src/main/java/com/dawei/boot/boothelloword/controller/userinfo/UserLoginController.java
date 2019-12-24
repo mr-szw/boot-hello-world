@@ -1,16 +1,14 @@
 package com.dawei.boot.boothelloword.controller.userinfo;
 
-import com.alibaba.fastjson.JSON;
-import com.dawei.boot.boothelloword.constants.CommentConstants;
-import com.dawei.boot.boothelloword.pojo.DemoPojo;
-import com.dawei.boot.boothelloword.pojo.UserInfo;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dawei.boot.boothelloword.utils.VerifyCodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,9 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import com.dawei.boot.boothelloword.constants.CommentConstants;
+import com.dawei.boot.boothelloword.pojo.DemoPojo;
+import com.dawei.boot.boothelloword.pojo.UserInfo;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
+import com.dawei.boot.boothelloword.utils.VerifyCodeUtil;
 
 
 /**
@@ -41,7 +41,7 @@ public class UserLoginController {
         HttpSession session = request.getSession();
         UserInfo userInfo = new UserInfo();
         userInfo.setId(System.currentTimeMillis());
-        session.setAttribute("userInfo", JSON.toJSONString(userInfo));
+        session.setAttribute("userInfo", GsonUtil.toJson(userInfo));
         DemoPojo demoPojo = new DemoPojo();
         demoPojo.setUserName("ABC");
         request.setAttribute("demoPojo", demoPojo);
