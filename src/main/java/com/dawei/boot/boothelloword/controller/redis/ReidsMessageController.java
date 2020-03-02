@@ -17,7 +17,7 @@ public class ReidsMessageController {
     private static final Logger logger = LoggerFactory.getLogger(ReidsMessageController.class);
 
     //redis 消息push 广播服务
-    @Resource
+    //@Resource
     private RedisChannelSender redisChannelSender;
 
     @RequestMapping("/push")

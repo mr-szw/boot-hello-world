@@ -27,7 +27,7 @@ public class ZookeeperAPIController {
 
     private static final Logger logger = LoggerFactory.getLogger(ZookeeperAPIController.class);
 
-    @Resource
+    //@Resource
     private CuratorFramework curatorFramework;
 
     @RequestMapping(value = "/try")

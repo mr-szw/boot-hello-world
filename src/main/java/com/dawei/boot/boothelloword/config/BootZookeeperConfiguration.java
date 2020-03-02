@@ -12,15 +12,15 @@ import org.springframework.context.annotation.Configuration;
  * @author by Dawei on 2019/5/6.
  * zookeeper 配置类
  */
-@Configuration
+//@Configuration
 public class BootZookeeperConfiguration {
 
 
     //Zookeeper 注册中心的配置
-    @Value(value = "${zookeeper.address.url}")
+   // @Value(value = "${zookeeper.address.url}")
     private String zookeeperAddressUrl;
 
-    @Bean
+   // @Bean
     public CuratorFramework getCuratorFramework() {
         //重试策略
         RetryPolicy retryPolicy =

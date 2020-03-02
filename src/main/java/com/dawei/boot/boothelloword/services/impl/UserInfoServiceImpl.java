@@ -1,6 +1,5 @@
 package com.dawei.boot.boothelloword.services.impl;
 
-import com.dawei.boot.boothelloword.mapper.SchedulerJobMapper;
 import com.dawei.boot.boothelloword.pojo.UserInfo;
 import com.dawei.boot.boothelloword.services.IUserInfoService;
 import javax.annotation.Resource;
@@ -17,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserInfoServiceImpl implements IUserInfoService {
 
-    @Resource
-    private SchedulerJobMapper schedulerJobMapper;
+//    @Resource
+//    private SchedulerJobMapper schedulerJobMapper;
 
     //Redis String K-V template
     @Resource
