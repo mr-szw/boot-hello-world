@@ -28,41 +28,52 @@ spring:
     cache: false
     suffix: .ftl
 
-  #数据库配置
+
+  ##数据源配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url:
-    password:
-    username:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbcp2:
+      validationQuery: SELECT 1
+      initialSize: 15      #初始化连接 链接池初始链接大小，默认0
+      minIdle: 5         #最小空闲链接，链接池中允许的空闲链接数 默认0
+      minEvictableIdleTimeMillis: 180000 #链接回收空闲时间
+      testOnBorrow: false  #取链接的时候校验链接是否可用
+      testWhileIdle: true  #链接是否被空闲连接回收器进行校验
+      removeAbandonedTimeout: 1800
+      logAbandoned: true # 当statement或链接泄露时打印是stack traces日志
+      poolPreparedStatements: true  #开启对statement的缓存
+      maxOpenPreparedStatements: 100 #同时分配打开的statement的最大数量
+      max-idle: 10 #最大空闲数
+
 
   #Redis 配置
-#  redis:
-#    sentinel:
-#      master:
-#      nodes:
-#    database: 7
-#    jedis:
-#      pool:
-#        #最小空闲数
-#        min-idle: 10
-#        #最大空闲数
-#        max-idle: 200
-#        #连接池的最大数据库连接数。设为0表示无限制,如果是jedis 2.4以后用redis.maxTotal
-#        max-active: 600
-#        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
-#        max-wait: 3000s
+  #  redis:
+  #    sentinel:
+  #      master:
+  #      nodes:
+  #    database: 7
+  #    jedis:
+  #      pool:
+  #        #最小空闲数
+  #        min-idle: 10
+  #        #最大空闲数
+  #        max-idle: 200
+  #        #连接池的最大数据库连接数。设为0表示无限制,如果是jedis 2.4以后用redis.maxTotal
+  #        max-active: 600
+  #        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+  #        max-wait: 3000s
 
-#  ##Elastic的服务器节点'
-#  data:
-#    elasticsearch:
-#      cluster-nodes:
+  #  ##Elastic的服务器节点'
+  #  data:
+  #    elasticsearch:
+  #      cluster-nodes:
 
-#  ##Session 存储位置设置
-#  session:
-#    store-type: redis
-#    redis:
-#      ## 保存会话立即保存到redis
-#      flush-mode: immediate
+  #  ##Session 存储位置设置
+  #  session:
+  #    store-type: redis
+  #    redis:
+  #      ## 保存会话立即保存到redis
+  #      flush-mode: immediate
   #热部署 重启 #热部署扫包位置
   devtools:
     restart:

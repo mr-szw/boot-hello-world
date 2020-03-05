@@ -1,7 +1,7 @@
 package com.dawei.boot.boothelloword.controller.redis;
 
 import com.dawei.boot.boothelloword.redis.RedisChannelSender;
-import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/redis")
-public class ReidsMessageController {
+public class RedisMessageController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ReidsMessageController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisMessageController.class);
 
     //redis 消息push 广播服务
     //@Resource
