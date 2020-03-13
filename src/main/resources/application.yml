@@ -90,8 +90,8 @@ mybatis:
 #日志
 logging:
   config: classpath:logconfig/logback.xml
-  path: ~/work/log/boot-hello-world
-
+  file:
+    path: ~/work/log/boot-hello-world
 
 
 

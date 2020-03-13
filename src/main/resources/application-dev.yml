@@ -28,7 +28,3 @@ spring:
     url: jdbc:mysql://localhost:3306/myDataBase
     password:
     username: root
-
-
-####项目服务配置
-

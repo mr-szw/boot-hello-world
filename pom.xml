@@ -21,6 +21,11 @@
 
 		<!-- google  -->
 		<guava.version>25.1-jre</guava.version>
+
+
+
+		<miui.zookeeper.service.host>staging</miui.zookeeper.service.host>
+		<miui.zookeeper.service.use>true</miui.zookeeper.service.use>
 	</properties>
 
 	<dependencies>
@@ -144,6 +149,7 @@
 		</dependency>
 
 
+
 		<!--   熔断降级 -->
 		<!--        <dependency>-->
 		<!--            <groupId>com.alibaba.csp</groupId>-->
@@ -154,13 +160,43 @@
 
 	</dependencies>
 
+
+	<profiles>
+		<profile>
+			<id>staging</id>
+			<activation>
+				<property>
+					<name>staging</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+
+				<miui.zookeeper.service.host>staging</miui.zookeeper.service.host>
+				<miui.zookeeper.service.use>true</miui.zookeeper.service.use>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+		</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

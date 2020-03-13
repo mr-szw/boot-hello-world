@@ -1,6 +1,6 @@
-package com.dawei.boot.boothelloword.controller;
+package com.dawei.boot.boothelloword.controller.zookeeper;
 
-import javax.annotation.Resource;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.CuratorEvent;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dawei.boot.boothelloword.pojo.ResultDto;
 import com.dawei.boot.boothelloword.utils.GsonUtil;
+
+import static java.nio.charset.StandardCharsets.*;
 
 /**
  * @author by Dawei on 2019/5/6. Zookeeper Api 尝试

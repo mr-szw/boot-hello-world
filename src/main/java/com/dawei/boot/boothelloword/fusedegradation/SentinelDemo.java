@@ -105,6 +105,8 @@ public class SentinelDemo {
 	 * 	4 通过注解的方式定义资源
 	 * 注意 blockHandler 函数会在原方法被限流/降级/系统保护的时候调用，
 	 *   而 fallback 函数会针对所有类型的异常
+	 *   若 blockHandler 和 fallback 都进行了配置，则被限流降级而抛出 BlockException 时只会进入 blockHandler 处理逻辑。
+	 *   若未配置 blockHandler、fallback 和 defaultFallback，则被限流降级时会将 BlockException 直接抛出（若方法本身未定义 throws BlockException 则会被 JVM 包装一层 UndeclaredThrowableException）。
 	 */
 	@SentinelResource(value = "resourceName-method3", blockHandler = "methodBlockHandler", fallback = "methodFallback")
 	public String method4(String paramA) {
