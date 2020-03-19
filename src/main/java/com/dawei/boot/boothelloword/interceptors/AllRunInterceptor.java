@@ -7,11 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+
 /**
  * @author Dawei 2019/3/24
  * 所有地方都执行的拦截器
  */
-public class AllRunIntercepter  implements HandlerInterceptor {
+public class AllRunInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(UserLoginInterceptor.class);
 
@@ -33,4 +36,5 @@ public class AllRunIntercepter  implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 
     }
+
 }

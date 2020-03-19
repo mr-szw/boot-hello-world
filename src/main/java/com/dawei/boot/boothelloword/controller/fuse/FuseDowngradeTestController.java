@@ -57,7 +57,7 @@ public class FuseDowngradeTestController {
 //			}
 //		}
 //		;
-		result = testService.method4("xxzsdsd");
+	//	result = testService.method4("xxzsdsd");
 
 		// 资源名可使用任意有业务语义的字符串
 //
@@ -110,22 +110,22 @@ public class FuseDowngradeTestController {
 //		flowRuleList.add(flowRule);
 //		FlowRuleManager.loadRules(flowRuleList);
 
-		//降级
-		List<DegradeRule> degradeRuleList = new ArrayList<>();
-		DegradeRule degradeRule = new DegradeRule();
-		degradeRule.setResource("resourceName-method3");
-		// set threshold RT, 10 ms
+//		//降级
+//		List<DegradeRule> degradeRuleList = new ArrayList<>();
+//		DegradeRule degradeRule = new DegradeRule();
+//		degradeRule.setResource("resourceName-method3");
+//		// set threshold RT, 10 ms
+////		degradeRule.setCount(2);
+////		degradeRule.setGrade(RuleConstant.DEGRADE_GRADE_RT);
+//
+//		// 异常数数量 2个的时候 中断
 //		degradeRule.setCount(2);
-//		degradeRule.setGrade(RuleConstant.DEGRADE_GRADE_RT);
-
-		// 异常数数量 2个的时候 中断
-		degradeRule.setCount(2);
-		degradeRule.setGrade(RuleConstant.DEGRADE_GRADE_EXCEPTION_COUNT);
-
-
-		degradeRule.setTimeWindow(3);
-		degradeRuleList.add(degradeRule);
-		DegradeRuleManager.loadRules(degradeRuleList);
+//		degradeRule.setGrade(RuleConstant.DEGRADE_GRADE_EXCEPTION_COUNT);
+//
+//
+//		degradeRule.setTimeWindow(3);
+//		degradeRuleList.add(degradeRule);
+//		DegradeRuleManager.loadRules(degradeRuleList);
 	}
 
 

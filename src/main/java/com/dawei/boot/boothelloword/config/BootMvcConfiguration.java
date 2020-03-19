@@ -1,6 +1,6 @@
 package com.dawei.boot.boothelloword.config;
 
-import com.dawei.boot.boothelloword.interceptors.AllRunIntercepter;
+import com.dawei.boot.boothelloword.interceptors.AllRunInterceptor;
 import com.dawei.boot.boothelloword.interceptors.UserLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -32,7 +32,7 @@ public class BootMvcConfiguration implements WebMvcConfigurer {
                 .excludePathPatterns("/**/test/**");
 
         //全局拦截 用于通用配置
-        registry.addInterceptor(new AllRunIntercepter()).addPathPatterns("/**/**");
+        registry.addInterceptor(new AllRunInterceptor()).addPathPatterns("/**/**");
     }
 
     //跨域访问配置
