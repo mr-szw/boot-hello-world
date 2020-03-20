@@ -36,6 +36,7 @@ public class FuseDowngradeTestController {
 
 	private static final Logger logger = LoggerFactory.getLogger(FuseDowngradeTestController.class);
 
+
 	@Autowired
 	private TestService testService;
 
