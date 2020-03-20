@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.reflection.ExceptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,8 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import com.dawei.boot.boothelloword.utils.GsonUtil;
+import com.google.gson.reflect.TypeToken;
 
 @RestController
 @RequestMapping(value = "/api/test/fuse")
@@ -35,9 +40,14 @@ public class FuseDowngradeTestController {
 	private TestService testService;
 
 	@GetMapping("/sentinel")
-	public String testSentinel(Integer count) throws InterruptedException {
+	public String testSentinel(HttpServletRequest request, Integer count) throws InterruptedException {
 		logger.info("Push Send Message  count={}", count);
 
+		String abc = request.getParameter("abc");
+		System.out.println(abc);
+		List<String> boardIdList = GsonUtil.fromJson(abc,
+				new TypeToken<List<String>>() {
+				}.getType());
 		init(count);
 		String result = "";
 //		Entry entry = null;
