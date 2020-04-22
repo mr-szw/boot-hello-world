@@ -1,7 +1,5 @@
 package com.dawei.boot.boothelloword.interceptors;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,12 +34,13 @@ public class UserLoginInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        try {
-            response.sendRedirect("/");
-        } catch (IOException e) {
-            logger.error("Can`t redirect to login page.");
-        }
-        return false;
+        return true;
+//        try {
+//            response.sendRedirect("/");
+//        } catch (IOException e) {
+//            logger.error("Can`t redirect to login page.");
+//        }
+//        return true;
     }
 
     //方法业务处理之后再调用

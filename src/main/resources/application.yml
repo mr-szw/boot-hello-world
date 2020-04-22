@@ -23,10 +23,10 @@ spring:
       #单次Request 請求允许的最大文件长度
       max-request-size:  10MB
   #视图配置
-  freemarker:
-    template-loader-path: classpath:/templates
-    cache: false
-    suffix: .ftl
+#  freemarker:
+#    #template-loader-path: classpath:/templates
+#    cache: false
+#    suffix: .ftl
 
 
   ##数据源配置
