@@ -24,12 +24,12 @@ public class BootMvcConfiguration implements WebMvcConfigurer {
          * 配置登陆校验拦截器
          * 拦截除了游客访问和登陆的所有請求
          */
-        registry.addInterceptor(new UserLoginInterceptor())
-                .addPathPatterns("/**/**")
-                //开后门： 登陆，游客，根目录（登陆)，验证码
-                .excludePathPatterns("/user/login", "/**/guest/**", "/", "/user/login/code")
-                .excludePathPatterns("/home/page/info")
-                .excludePathPatterns("/**/test/**");
+//        registry.addInterceptor(new UserLoginInterceptor())
+//                .addPathPatterns("/**/**")
+//                //开后门： 登陆，游客，根目录（登陆)，验证码
+//                .excludePathPatterns("/user/login", "/**/guest/**", "/", "/user/login/code")
+//                .excludePathPatterns("/home/page/info")
+//                .excludePathPatterns("/**/test/**");
 
         //全局拦截 用于通用配置
         registry.addInterceptor(new AllRunInterceptor()).addPathPatterns("/**/**");
