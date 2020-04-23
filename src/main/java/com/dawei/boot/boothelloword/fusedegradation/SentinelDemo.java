@@ -30,22 +30,31 @@ public class SentinelDemo {
 
 	//1、主流框架整合
 
+	private Object object = new Object();
 
 	/**
 	 * 2、异常抛出的方式
 	 * 2.1 无热点数据参数时的使用方法
 	 */
-	public void method2() {
-		while (true) {
+	public void method2(String resourceName) {
+		int times = 100;
+
+		while (times-- > 0){
+			synchronized (object) {
 			///资源名可使用任意有业务语义的字符串，比如方法名、接口名或其它可唯一标识的字符串。
-			try (Entry entry = SphU.entry("resourceName-method2-1")) {
+			try (Entry entry = SphU.entry(resourceName)) {
 				// 被保护的业务逻辑
-				System.out.println("Get resource");
+				System.out.println("Get resource" + times);
+				System.out.println(System.currentTimeMillis());
+				Thread.sleep(1000L);
 			} catch (BlockException ex) {
-				System.out.println("Can`t get resource");
+				System.out.println("Can`t get resource" + times);
 				ex.printStackTrace();
 				// 资源访问阻止，被限流或被降级
 				// 在此处进行相应的处理操作
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			}
 		}
 	}
@@ -192,28 +201,30 @@ public class SentinelDemo {
 
 
 	//QPS
-	private void initFlowQpsRule() {
+	public void initFlowQpsRule(String resourceName) {
 		List<FlowRule> rules = new ArrayList<>();
-		FlowRule rule = new FlowRule("resourceName");
+		FlowRule rule = new FlowRule(resourceName);
 		// set limit qps to 20
-		rule.setCount(20);
+		rule.setCount(1);
 		rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
 		rule.setLimitApp("default");
-		rule.setControlBehavior(RuleConstant.CONTROL_BEHAVIOR_WARM_UP);
+		//
+		rule.setControlBehavior(RuleConstant.CONTROL_BEHAVIOR_WARM_UP_RATE_LIMITER);
 		rules.add(rule);
 		FlowRuleManager.loadRules(rules);
 	}
 
 
 	//熔断降级规则
-	private void initDegradeRule() {
+	private void initDegradeRule(String resourceName) {
 		List<DegradeRule> rules = new ArrayList<>();
 		DegradeRule rule = new DegradeRule();
-		rule.setResource("resourceName");
+		rule.setResource(resourceName);
 		// set threshold RT, 10 ms
 		rule.setCount(10);
 		rule.setGrade(RuleConstant.DEGRADE_GRADE_RT);
-		rule.setTimeWindow(10);
+		//单位 s
+		rule.setTimeWindow(5);
 		rules.add(rule);
 		DegradeRuleManager.loadRules(rules);
 	}
@@ -232,15 +243,20 @@ public class SentinelDemo {
 
 
 
+	public static void main(String[] args) {
+
+		String resourceName = "resourceName";
+
+		SentinelDemo sentinelDemo = new SentinelDemo();
+		//sentinelDemo.initDegradeRule(resourceName);
+
+		sentinelDemo.initFlowQpsRule(resourceName);
+		SentinelDemo sentinelDemo1 = new SentinelDemo();
+		sentinelDemo1.initFlowQpsRule(resourceName);
+
+		new Thread(() -> {sentinelDemo.method2(resourceName);}).start();
+		new Thread(() -> {sentinelDemo1.method2(resourceName);}).start();
 
 
-
-
-
-
-
-//	public static void main(String[] args) {
-//		SentinelDemo sentinelDemo = new SentinelDemo();
-//		sentinelDemo.method2();
-//	}
+	}
 }

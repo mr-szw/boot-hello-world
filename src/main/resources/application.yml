@@ -93,7 +93,7 @@ mybatis:
 logging:
   config: classpath:logconfig/logback.xml
   file:
-    path: ~/work/log/boot-hello-world
+    path: C:/Users/Sinbad/logs/boot-hello-world
 
 
 

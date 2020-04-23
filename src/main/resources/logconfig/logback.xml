@@ -108,6 +108,8 @@
         </filter>
     </appender>
 
+
+
     <!-- 时间滚动输出 level为 ERROR 日志 -->
     <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
@@ -142,35 +144,69 @@
         </filter>
     </appender>
 
+
+    <!-- 时间滚动输出 level为 INFO 日志 -->
+    <appender name="CSP_SENTINEL_RECORD_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 正在记录的日志文件的路径及文件名 -->
+        <file>${LOG_PATH}/log-sentinel.log</file>
+        <!--日志文件输出格式-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+        <!-- 此日志文件只记录info级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+
+
     <logger name="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="INFO"/>
 
     <logger name="org.springframework.web" level="info"/>
     <logger name="org.springframework" level="info"/>
 
-    <!--开发环境:打印控制台-->
-    <springProfile name="dev">
-        <root level="info">
-            <appender-ref ref="CONSOLE" />
-        </root>
-    </springProfile>
+    <logger name="com.alibaba" level="DEBUG" />
 
-    <!--测试环境:打印控制台和输出到文件-->
-    <springProfile name="test">
-        <root level="info">
-            <appender-ref ref="CONSOLE" />
-            <appender-ref ref="INFO_FILE" />
-            <appender-ref ref="ERROR_FILE" />
-        </root>
-    </springProfile>
+    <logger name="cspSentinelRecordLog" level="DEBUG" additibity="false">
+        <appender-ref ref="CSP_SENTINEL_RECORD_LOG_FILE" />
+    </logger>
 
-    <!--生产环境:输出到文件-->
-    <springProfile name="prod">
-        <root level="info">
-            <appender-ref ref="CONSOLE" />
-            <appender-ref ref="DEBUG_FILE" />
-            <appender-ref ref="INFO_FILE" />
-            <appender-ref ref="ERROR_FILE" />
-        </root>
-    </springProfile>
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="CSP_SENTINEL_RECORD_LOG_FILE" />
+    </root>
+
+
+
+
+
+
+<!--    &lt;!&ndash;开发环境:打印控制台&ndash;&gt;-->
+<!--    <springProfile name="dev">-->
+<!--        <root level="info">-->
+<!--            <appender-ref ref="CONSOLE" />-->
+<!--        </root>-->
+<!--    </springProfile>-->
+
+<!--    &lt;!&ndash;测试环境:打印控制台和输出到文件&ndash;&gt;-->
+<!--    <springProfile name="test">-->
+<!--        -->
+<!--    </springProfile>-->
+
+<!--    &lt;!&ndash;生产环境:输出到文件&ndash;&gt;-->
+<!--    <springProfile name="prod">-->
+<!--        <root level="info">-->
+<!--            <appender-ref ref="CONSOLE" />-->
+<!--            <appender-ref ref="DEBUG_FILE" />-->
+<!--            <appender-ref ref="INFO_FILE" />-->
+<!--            <appender-ref ref="ERROR_FILE" />-->
+<!--        </root>-->
+<!--    </springProfile>-->
 
 </configuration>
