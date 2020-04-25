@@ -30,6 +30,10 @@ spring:
 #    cache: false
 #    suffix: .ftl
 
+  #静态资源访问路径
+  resources:
+    static-locations: classpath:/static/
+
 
   ##数据源配置
   datasource:
