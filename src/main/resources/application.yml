@@ -99,5 +99,7 @@ logging:
   file:
     path: C:/Users/Sinbad/logs/boot-hello-world
 
+  logdir: /Users/inke/dev/log/tomcat/sell
+
 
 

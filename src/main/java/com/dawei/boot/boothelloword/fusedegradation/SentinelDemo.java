@@ -1,5 +1,6 @@
 package com.dawei.boot.boothelloword.fusedegradation;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.Tracer;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.context.ContextUtil;
+import com.alibaba.csp.sentinel.log.LogBase;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.authority.AuthorityRule;
@@ -247,7 +249,12 @@ public class SentinelDemo {
 
 		String resourceName = "resourceName";
 
+
+		System.setProperty(LogBase.LOG_DIR,  System.getProperty("user.home") + "/logs");
+		String relativelyPath=System.getProperty("user.dir");
 		SentinelDemo sentinelDemo = new SentinelDemo();
+
+		System.out.println(SentinelDemo.class.getClassLoader().getResource("").getPath());
 		//sentinelDemo.initDegradeRule(resourceName);
 
 		sentinelDemo.initFlowQpsRule(resourceName);
