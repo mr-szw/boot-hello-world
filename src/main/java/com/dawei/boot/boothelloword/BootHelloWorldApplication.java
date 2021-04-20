@@ -4,13 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
-//Mybatis 扫包
-//@MapperScan(basePackages = "com.dawei.boot.boothelloword.mapper")
+@EnableTransactionManagement(proxyTargetClass = true)
 //在boot启动是扫描 @WebServlet @WebFilter @WebLisenter
-//@ServletComponentScan
 //@EnableEurekaClient
 @EnableFeignClients
 public class BootHelloWorldApplication {

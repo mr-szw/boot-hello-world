@@ -3,15 +3,16 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.sinbad.project</groupId>
+		<artifactId>project-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
+
 	<groupId>com.dawei.boot</groupId>
 	<artifactId>boot-hello-world</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>boot-hello-world</name>
+
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -51,13 +52,6 @@
 		</dependency>
 
 
-
-		<!-- FreeMark 视图模板 -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-freemarker</artifactId>-->
-<!--		</dependency>-->
-		<!-- jdbc 包含事务的内容    -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
@@ -68,61 +62,39 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-sentinel -->
+
 		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-			<version>2.1.0.RELEASE</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
 
-		<!--  aop依赖 -->
+
+
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.3</version>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
 		</dependency>
 
 		<!-- ElasticSearch  -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
+<!--		</dependency>-->
+
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
 		</dependency>
-
-		<!-- Boot-Session -->
-		<!--        <dependency>-->
-		<!--            <groupId>org.springframework.session</groupId>-->
-		<!--            <artifactId>spring-session-data-redis</artifactId>-->
-		<!--        </dependency>-->
-
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.5</version>
-		</dependency>
-
-
-		<!-- Google jar -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.9.2</version>
-		</dependency>
-
 		<!-- mybatis-spring-boot-starter -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.2</version>
 		</dependency>
 
 
@@ -134,62 +106,11 @@
 		</dependency>
 
 
-		<!-- curator-recipes -->
 		<dependency>
-			<groupId>org.apache.curator</groupId>
-			<artifactId>curator-recipes</artifactId>
-			<version>4.0.1</version>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-core</artifactId>
+			<version>1.8.1</version>
 		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.10</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-
-		<!--   熔断降级 -->
-		<!--        <dependency>-->
-		<!--            <groupId>com.alibaba.csp</groupId>-->
-		<!--            <artifactId>sentinel-core</artifactId>-->
-		<!--            <version>1.7.1</version>-->
-		<!--        </dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<artifactId>guava</artifactId>-->
-<!--					<groupId>com.google.guava</groupId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-fileupload</artifactId>
-					<groupId>commons-fileupload</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<artifactId>guava</artifactId>-->
-<!--					<groupId>com.google.guava</groupId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
-
 
 		<!-- 对象的内存布局 -->
 		<dependency>
@@ -202,55 +123,76 @@
 
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring.cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 
 	<profiles>
 		<profile>
-			<id>staging</id>
+			<id>dev</id>
 			<activation>
-				<property>
-					<name>staging</name>
-					<value>true</value>
-				</property>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-
-				<miui.zookeeper.service.host>staging</miui.zookeeper.service.host>
-				<miui.zookeeper.service.use>true</miui.zookeeper.service.use>
+				<profile.active>dev</profile.active>
 			</properties>
 		</profile>
+		<profile>
+			<id>staging</id>
+			<properties>
+				<profile.active>staging</profile.active>
+			</properties>
+		</profile>
+
 	</profiles>
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-		</plugin>
-		</plugins>
+		<!-- 使用选中环境的配置执行替换 -->
+		<filters>
+			<filter>src/main/resources/config/application-${profile.active}.properties</filter>
+		</filters>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+				<!--①-->
+				<!-- excludes 来将所有的 application*.properties 排除在外 -->
+				<excludes>
+					<exclude>application*.properties</exclude>
+					<exclude>config/application*.properties</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!--②-->
+				<!-- filtering，maven 会将文件中的 @XX@ 替换 profile 中定义的 XX 变量/属性 -->
+				<filtering>true</filtering>
 				<includes>
-					<include>**/*</include>
+					<include>application.properties</include>
 				</includes>
 			</resource>
 		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<!--加入下面两项配置  如此 打包不需要定义Main.class -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includeSystemScope>true</includeSystemScope>
+					<!--fork:如果没有该项配置,整个devtools不会起作用-->
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+
 	</build>
+
+
 
 </project>
