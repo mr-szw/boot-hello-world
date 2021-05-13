@@ -7,4 +7,11 @@ import lombok.Data;
  */
 @Data
 public class BookInfo {
+
+	private String bookId;
+	private String bookName;
+
+
+
+
 }

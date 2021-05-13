@@ -7,4 +7,7 @@ import lombok.Data;
  */
 @Data
 public class AuthorInfo {
+
+	private long authorId;
+	private String authorName;
 }

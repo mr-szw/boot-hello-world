@@ -11,6 +11,9 @@ import graphql.schema.DataFetchingEnvironment;
 public class BookDataFetcher implements DataFetcher<BookInfo> {
 	@Override
 	public BookInfo get(DataFetchingEnvironment dataFetchingEnvironment) throws Exception {
-		return null;
+		BookInfo bookInfo = new BookInfo();
+		bookInfo.setBookId("121");
+		bookInfo.setBookName("bookName");
+		return bookInfo;
 	}
 }
