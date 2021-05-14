@@ -11,6 +11,7 @@ public class BookInfo {
 	private String bookId;
 	private String bookName;
 
+	private AuthorInfo authorInfo;
 
 
 

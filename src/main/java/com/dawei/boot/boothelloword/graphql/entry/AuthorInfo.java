@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 public class AuthorInfo {
 
-	private long authorId;
+	private int authorId;
 	private String authorName;
 }

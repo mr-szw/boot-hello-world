@@ -13,14 +13,14 @@ public class AuthorDataFetcher implements DataFetcher<AuthorInfo> {
 
 		Object authorIdObj = dataFetchingEnvironment.getArgument("authorId");
 
-		long authorId = authorIdObj == null ? 0 : (long) authorIdObj;
+		int authorId = authorIdObj == null ? 0 : (int) authorIdObj;
 		System.out.println(authorId);
 
 		AuthorInfo authorInfo = new AuthorInfo();
-		authorInfo.setAuthorId(12L);
+		authorInfo.setAuthorId(12);
 		authorInfo.setAuthorName("臭的名字");
 
-		return null;
+		return authorInfo;
 	}
 
 

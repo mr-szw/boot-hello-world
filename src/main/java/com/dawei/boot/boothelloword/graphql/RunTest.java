@@ -23,18 +23,21 @@ public class RunTest {
 	public static void main(String[] args) {
 		//这里是定义schema 的字符串，定义了一个名为hello的查询，返回的数据类型是String
 		//schema除了直接通过String字符串定义之外，还可以通过SDL文件（后缀为*.graphqls的文件）或编码的方式定义。
-		String schema = "type Query {\n" +
-				"  getBookById(bookId: String): BookInfo\n" +
-				"}\n" +
-				"type BookInfo {\n" +
-				"  bookId: String\n" +
-				"  bookName: String\n" +
-				"  authorInfo: AuthorInfo\n" +
-				"}" +
-				"type AuthorInfo {\n" +
-				"    id: Int,\n" +
-				"    authorName: String\n" +
-				"}";
+		String schema = "type Query { " +
+				"  getBookById ( bookId: String): BookInfo " +
+				"  getAuthorInfo ( authorId: Int): AuthorInfo " +
+				"} " +
+				" type BookInfo { " +
+				"  bookId: String " +
+				"  bookName: String " +
+				"  authorInfo( authorId: Int): AuthorInfo " +
+				" } "
+				+
+				" type AuthorInfo { " +
+				"    authorId: Int, " +
+				"    authorName: String " +
+				"} "
+				;
 
 		//{hero(name:\"jack\"){id,name,addr}}
 		/*
@@ -43,13 +46,20 @@ public class RunTest {
 				flashBuyNewUser
 			}
 		*/
-		String queryStr = "query GetBookById($bookId: String, $authorId: Int) { " +
-								"getBookById(bookId: $bookId) {" +
-									"bookId" +
-									"bookName" +
-									"authorInfo(authorId: $authorId) " +
-								"} "
-							+ "}";
+		String queryStr = "query TopQuery($bookId: String, $authorId: Int) { " +
+								"getBookById(bookId: $bookId) { " +
+									" bookId " +
+									" bookName " +
+									" authorInfo (authorId: $authorId) {" +
+										" authorId " +
+										" authorName " +
+									"}  " +
+								"} " +
+								" getAuthorInfo(authorId: $authorId) {" +
+									" authorId " +
+									" authorName " +
+								"}" +
+							 "} ";
 
 		SchemaParser schemaParser = new SchemaParser();
 		TypeDefinitionRegistry typeDefinitionRegistry = schemaParser.parse(schema);
@@ -58,7 +68,7 @@ public class RunTest {
 		//这里是将名为hello的查询关联到一个简单的StaticDataFetcher对象，它返回一个字符串"world"
 		RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring()
 				.type("Query", builder -> builder.dataFetcher("getBookById", new BookDataFetcher()))
-				.type("Query", builder -> builder.dataFetcher("authorInfo", new AuthorDataFetcher()))
+				.type("Query", builder -> builder.dataFetcher("getAuthorInfo", new AuthorDataFetcher()))
 				.build();
 
 		SchemaGenerator schemaGenerator = new SchemaGenerator();
@@ -78,7 +88,7 @@ public class RunTest {
 				// 需要执行的查询语言
 				.query(queryStr)
 				// 执行操作的名称，默认为null
-				.operationName("GetBookById")
+				.operationName("TopQuery")
 				// 获取query语句中定义的变量的值
 				.variables(variablesMap)
 				.build();
@@ -88,6 +98,7 @@ public class RunTest {
 
 		//输出查询结果，结果为{hello=world},默认是Map格式的数据
 		System.out.println(executionResult.getData().toString());
+		System.out.println(executionResult.getErrors());
 	}
 
 
